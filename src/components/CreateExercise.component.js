@@ -53,7 +53,9 @@ function CreateExercise(props){
     return (
         <div>
             <Form onSubmit = {onSubmit}>
-            <Form.Select name = "username" onChange = {onChange} value = {currUser.username}aria-label="Default select example">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Username</Form.Label>
+                 <Form.Select name = "username" onChange = {onChange} value = {currUser.username}aria-label="Default select example">
                 {
                     currUser.users.map(function (user) {
                         return (
@@ -62,6 +64,8 @@ function CreateExercise(props){
                     })
                 }
             </Form.Select>
+            </Form.Group>
+           
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Desription</Form.Label>
                 <Form.Control name = "description" onChange = {onChange} value = {currUser.description} as="textarea" rows={2} />
