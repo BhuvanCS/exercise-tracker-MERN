@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import DatePicker from 'react-datepicker'
@@ -18,13 +19,22 @@ function CreateExercise(props){
 
     //Lifecycle method which is called everytime page is loaded
     React.useEffect(() => {
-        setCurrUser((prev) => {
-            return {
-                ...prev,
-                users: ['Test User A', 'Test User B'],
-                username: 'Test User A'
-            }
-        })
+        console.log("Hello");
+        //Get the list of all users from the DB using axios
+        axios.get("http://localhost:3000/users")
+            .then((res) => {
+                if(res.data.length > 0) {
+                    setCurrUser((prev) => {
+                        return {
+                            ...prev,
+                            users: res.data.map((user) => {
+                                return user.username;
+                            }),
+                            username: res.data[0].username
+                        }
+                    })
+                }
+            })
     }, [])
 
     function onChange(event){
@@ -47,6 +57,10 @@ function CreateExercise(props){
             date: currUser.date
         }
         console.log(exercise);
+        axios.post("http://localhost:3000/exercises/add", exercise)
+            .then((res) => {
+                console.log(res);
+            })
         //redirect to homepage
         navigate('/');
     }
@@ -57,9 +71,9 @@ function CreateExercise(props){
                 <Form.Label>Username</Form.Label>
                  <Form.Select name = "username" onChange = {onChange} value = {currUser.username}aria-label="Default select example">
                 {
-                    currUser.users.map(function (user) {
+                    currUser.users.map(function (user, ind) {
                         return (
-                            <option value={user}>{user}</option>
+                            <option key = {ind} value={user}>{user}</option>
                         )
                     })
                 }
