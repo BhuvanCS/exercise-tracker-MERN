@@ -19,7 +19,6 @@ function CreateExercise(props){
 
     //Lifecycle method which is called everytime page is loaded
     React.useEffect(() => {
-        console.log("Hello");
         //Get the list of all users from the DB using axios
         axios.get("http://localhost:3000/users")
             .then((res) => {
@@ -48,7 +47,6 @@ function CreateExercise(props){
     }
 
     function onSubmit(event) {
-        // console.log("Hello World")
         event.preventDefault();
         const exercise = {
             username: currUser.username,
