@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function CreateUser(props){
+    const navigate = useNavigate();
     const [username, setUsername] = React.useState("");
 
     function onChange(event){
@@ -22,7 +24,8 @@ function CreateUser(props){
             .then((res) => {
                 console.log(res.data);
             })
-        setUsername("");    
+        setUsername("");  
+        navigate("/");  
     }
     return (
         <div>

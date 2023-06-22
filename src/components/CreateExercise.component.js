@@ -64,6 +64,7 @@ function CreateExercise(props){
     }
     return (
         <div>
+        <h3 className = "mb-3">Create Exercise Log</h3>
             <Form onSubmit = {onSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Username</Form.Label>

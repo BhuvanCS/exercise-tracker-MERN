@@ -3,6 +3,7 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Exercise from './Exercise';
 
+
 function ExercisesList(props){
     const [exercises, setExercises] = React.useState([]);
 
@@ -36,7 +37,7 @@ function ExercisesList(props){
         )
     }
     return(
-        <Table striped bordered hover>
+        <Table striped  hover>
             <thead>
             <tr>
                 <th>Username</th>
